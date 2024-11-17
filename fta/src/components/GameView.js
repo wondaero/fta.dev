@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Person from './Person';
 import Timer1 from './Timer1';
-import Timer2 from './Timer2';
 
 import '../App.css';
 import '../assets/style.scss';
@@ -20,14 +19,14 @@ function GameView() {
   const [peopleArr, _setPeopleArr] = useState([]);
   const [mrKim, _setMrKim] = useState(null);
   const [gameStage, _getGameStage] = useState(null);
-  const [targetTime, _setTargetTime] = useState(1000 * 5);
+  const [targetTime, _setTargetTime] = useState(1000 * 30);
 
   const getRandomNum = (mn, mx) =>  Math.floor(Math.random() * (mx - mn + 1)) + mn;
 
   const gameStart = () => {
     _setMrKim({
       idx: getRandomNum(0, (rowColCnt.current ** 2) - 1),
-      idx: 0,
+      // idx: 0,
       style: setStyleCode()
     })
   }
@@ -82,16 +81,16 @@ function GameView() {
 
   const pickPerson = (idx) => {
     if(mrKim.idx === idx){
-      _setTargetTime(targetTime => targetTime + (1000 * 10));
+      _setTargetTime(targetTime => targetTime - (1 * 1000));
 
       gameStart();
     }
-
   }
 
   useEffect(() => {
     gameStart();
-  }, [])
+  }, []);
+
   useEffect(() => {
     if(!mrKim) return;  //임시?
     console.log(mrKim);
@@ -132,7 +131,6 @@ function GameView() {
         <div className="timer">
           <Timer1 targetTime={targetTime} />
         </div>
-        <Timer2 duration={targetTime / 1000} />
       </div>
       <div className="people">
         {peopleArr.map((p) => (
