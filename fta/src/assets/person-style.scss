@@ -7,6 +7,17 @@
   height: 50px;
   padding-top: 8px;
 
+  &.is-target{
+    transform: scale(1.25);
+    transition: transform 1s;
+    
+  }
+  &.has-filter{
+    filter: grayscale(5) blur(2px);
+    opacity: .75;
+    // transition: filter 1s;
+  }
+
   &:after {
     content: '';
     display: block;

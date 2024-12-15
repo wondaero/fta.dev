@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../assets/person-style.scss';
 
 
-function Timer1({targetTime}) {
+function Timer1({targetTime, gameState, setGameOver}) {
 
   const track = {
     cx: 100,
@@ -28,6 +28,7 @@ function Timer1({targetTime}) {
     if (remainingTime <= 0) {
       _setCurTime(0);
       window.cancelAnimationFrame(raf.current);
+      setGameOver();
     } else {
       _setCurTime(remainingTime);
       raf.current = window.requestAnimationFrame(timer);
@@ -43,11 +44,19 @@ function Timer1({targetTime}) {
     _setCurTime(targetTime); // 타이머 초기화
     startTimeRef.current = null; // 새 타이머를 시작할 때 초기화
     raf.current = window.requestAnimationFrame(timer);
+    console.log(gameState);
 
     return () => window.cancelAnimationFrame(raf.current)
   }, [targetTime]);
 
-
+  useEffect(() => {
+    if(gameState === 'gameOver'){
+      window.cancelAnimationFrame(raf.current);
+    }
+  }, [gameState]);
+  // useEffect(() => {
+  //   console.log(curTime);
+  // }, [curTime]);
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
@@ -59,6 +68,7 @@ function Timer1({targetTime}) {
             strokeDasharray: circumference,
             strokeDashoffset: circumference - calculateProgress(curTime),
             stroke: 'blue',
+            opacity: gameState === 'ing' ? 1 : .2,
             transform: 'rotate(-90 100 100)'
           }
         }

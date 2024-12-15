@@ -14,14 +14,16 @@ html, body{
   justify-content: center;
   height: 100%;
 
-  header{
+  & > header{
     background: #facade;
     display: flex;
     width: 100%;
     align-items: center;
-    padding: 10px;
     position: relative;
     box-sizing: border-box;
+    height: 35px;
+    min-height: 35px;
+    padding: 0 10px;
   
     h1{
       margin: 0;
@@ -39,7 +41,7 @@ html, body{
   }
 
   .main{
-    flex: 1;
+    flex-grow: 1;
     width: 100%;
     display: flex;
     align-items: center;
@@ -98,16 +100,47 @@ html, body{
   
       p{
         text-align: center;
+
+        .tip1{
+          color: #f00;
+          font-size: 12px;
+          font-weight: 900;
+        }
       }
     }
 
     .game-view{
+      header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+        .stage{
+          margin: 0;
+        }
+
+        button{
+          background: #fae100;
+          color: #3c1d1e;
+          border: 0;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100px;
+          height: 32px;
+          cursor: pointer;
+          box-shadow: 0 0 4px rgba(0, 0, 0, .2);
+        }
+      }
       .top-inf{
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
         margin-bottom: 20px;
+
 
         .target-person{
           display: flex;

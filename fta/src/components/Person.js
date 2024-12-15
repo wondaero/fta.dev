@@ -1,6 +1,7 @@
+import React, { useEffect } from 'react';
 import '../assets/person-style.scss';
 
-function Person({ onClickHandler, styleCode }) {
+function Person({ onClickHandler, styleCode, gameState, isTarget }) {
 
   const style1 = {
     hat: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'none'],
@@ -9,8 +10,13 @@ function Person({ onClickHandler, styleCode }) {
     tie: ['t1', 't2', 't3', 't4', 't5', 't6', 'none'],
   }
 
+  useEffect(() => {}, [gameState]);
+
   return (
-    <div className="person" onClick={ onClickHandler }>
+    <div
+      className={`person${!isTarget && gameState === 'gameOver' ? ' has-filter' : ''}${isTarget && gameState === 'gameOver' ? ' is-target' : ''}`}
+      onClick={ onClickHandler }
+    >
       <div className="head"></div>
       <div className="body"></div>
       <div className={`hat ${style1.hat[styleCode[0]]}`}></div>

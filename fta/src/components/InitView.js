@@ -9,7 +9,8 @@ function InitView({ onClickHandler }) {
       <button className="game-start-btn" onClick={ onClickHandler }></button>
       <p>
         돋보기 버튼을 누르면 게임이 시작됩니다.<br/>
-        30초 안에 최대한 많이 찾아주세요.
+        주어진 시간내에 같은 사람을 찾아주세요.<br/>
+        <strong className="tip1">*STAGE가 높을수록 시간이 짧음</strong>
       </p>
     </div>
   );
