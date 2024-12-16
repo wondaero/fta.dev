@@ -44,7 +44,6 @@ function Timer1({targetTime, gameState, setGameOver}) {
     _setCurTime(targetTime); // 타이머 초기화
     startTimeRef.current = null; // 새 타이머를 시작할 때 초기화
     raf.current = window.requestAnimationFrame(timer);
-    console.log(gameState);
 
     return () => window.cancelAnimationFrame(raf.current)
   }, [targetTime]);
@@ -54,9 +53,6 @@ function Timer1({targetTime, gameState, setGameOver}) {
       window.cancelAnimationFrame(raf.current);
     }
   }, [gameState]);
-  // useEffect(() => {
-  //   console.log(curTime);
-  // }, [curTime]);
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">

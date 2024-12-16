@@ -159,8 +159,7 @@ function GameView() {
   }, []);
 
   useEffect(() => {
-    if(!mrKim) return;  //임시?
-    console.log(mrKim);
+    if(!mrKim) return;
 
     const tmpArr = [];
     for(let i = 0; i < rowColCnt.current ** 2; i++){
