@@ -8,7 +8,7 @@ import '../assets/style.scss';
 function GameView() {
 
   const gameViewRef = useRef(null);
-  const rowColCnt = useRef(10);
+  const rowColCnt = useRef(8);
   const style1 = {
     hat: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'none'],
     cloth: ['c1', 'c2', 'c3', 'c4'],
@@ -19,7 +19,7 @@ function GameView() {
   const [peopleArr, _setPeopleArr] = useState([]);
   const [mrKim, _setMrKim] = useState(null);
   const [gameState, _setGameState] = useState('ing');
-  const [targetTime, _setTargetTime] = useState(1000 * 30);
+  const [targetTime, _setTargetTime] = useState(1000 * 20);
   const [stageNum, _setStageNum] = useState(1);
 
   const getRandomNum = (mn, mx) =>  Math.floor(Math.random() * (mx - mn + 1)) + mn;
@@ -97,8 +97,8 @@ function GameView() {
   }
 
   const resizeFnc = () => {
-    const orgSize_w = 600;
-    const orgSize_h = 707;
+    const orgSize_w = 470;
+    const orgSize_h = 587;
     const window_w = window.innerWidth;
     const window_h = window.innerHeight;
     const headerSize = 35;
@@ -106,9 +106,7 @@ function GameView() {
     const resize_w = (window_w - 20) / orgSize_w;
     const resize_h = (window_h - 20 - headerSize) / orgSize_h;
 
-    let resizeValue = resize_w > resize_h ? resize_w : resize_h;  //작은 기기
-
-    if(window_w > orgSize_w || window_h > orgSize_h) resizeValue = resize_w < resize_h ? resize_w : resize_h;
+    let resizeValue = resize_w < resize_h ? resize_w : resize_h;  //작은 기기
 
     gameViewRef.current.style.transform = `scale(${resizeValue})`;
   }
@@ -119,7 +117,7 @@ function GameView() {
 
   const shareKakao = () => {
     let desc =`#${stageNum - 1}탄까지클리어`;
-    if(stageNum === 0) desc = '사람 좀 찾아줘...'
+    if(stageNum === 1) desc = '사람 좀 찾아줘...'
     window.Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {

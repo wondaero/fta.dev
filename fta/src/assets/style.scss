@@ -46,6 +46,7 @@ html, body{
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     
     .init-view{
       display: flex;
@@ -110,6 +111,8 @@ html, body{
     }
 
     .game-view{
+      position: absolute;
+      
       header{
         display: flex;
         align-items: center;
@@ -166,8 +169,8 @@ html, body{
         }
       }
       .people{
-        width: 590px;
-        height: 590px;
+        width: 470px;
+        height: 470px;
         box-sizing: border-box;
         display: flex;
         flex-wrap: wrap;
@@ -184,10 +187,10 @@ html, body{
           border-radius: 50%;
           box-shadow: inset 0 0 25px rgba(0, 255, 255, .2), 0 0 1px rgba(0, 0, 255, .8);
 
-          &:nth-of-type(10n){
+          &:nth-of-type(8n){
             margin-right: 0;
           }
-          &:nth-of-type(-n + 90){
+          &:nth-of-type(n + 57){
             margin-bottom: 0;
           }
         }
