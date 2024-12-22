@@ -8,6 +8,7 @@ import '../assets/style.scss';
 function GameView() {
 
   const gameViewRef = useRef(null);
+  const shareBtnRef = useRef(null);
   const rowColCnt = useRef(8);
   const style1 = {
     hat: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'none'],
@@ -115,14 +116,23 @@ function GameView() {
     _setGameState('gameOver');
   }
 
+
   const shareKakao = () => {
-    let desc =`#${stageNum - 1}탄까지클리어`;
-    if(stageNum === 1) desc = '사람 좀 찾아줘...'
+    let desc = '사람 좀 찾아줘...';
+    if(stageNum > 1){
+      desc =`#${stageNum - 1}탄까지클리어`;
+      const pr = prompt('내가 누군지 알려주세요.(최대 8글자)');
+      if(pr !== '' && pr.replaceAll(' ', '') !== '') desc += ` #${pr.slice(0, 8)}`;
+    }
+
+    shareBtnRef.current.focus();
+    
     window.Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
         title: 'Find Them All',
-        description: `#${stageNum - 1}탄까지클리어`,
+        // description: `#${stageNum - 1}탄까지클리어`,
+        description: desc,
         link: {
           mobileWebUrl: 'https://developers.kakao.com',
           webUrl: 'https://developers.kakao.com',
@@ -187,7 +197,7 @@ function GameView() {
     <div className="game-view" ref={gameViewRef}>
       <header>
         <h3 className="stage">STAGE. {stageNum}</h3>
-        {gameState === 'gameOver' && <button onClick={shareKakao}>카카오톡 공유</button>}
+        {gameState === 'gameOver' && <button onClick={shareKakao} ref={shareBtnRef}>카카오톡 공유</button>}
        
       </header>
       <div className="top-inf">
