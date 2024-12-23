@@ -193,6 +193,24 @@
     &.h7 {
       background: rgb(230, 195, 0);
     }
+    &.h8{
+      background: #e00;
+      border-radius: 8px 0 0 0;
+      border-bottom: 3px solid #fefefe;
+    }
+    &.h8:after{
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #fefefe;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%);
+      box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    }
+
   }
 
   .glass {

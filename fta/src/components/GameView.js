@@ -23,6 +23,16 @@ function GameView() {
   const [targetTime, _setTargetTime] = useState(1000 * 20);
   const [stageNum, _setStageNum] = useState(1);
 
+  const isChristMasEdition = () => {
+    const now = new Date();
+    return (now.getMonth() + 1) === 12 && (now.getDate() === 24 || now.getDate() === 25);
+  }
+
+  if(isChristMasEdition()){
+    console.log(`%c크리스마스에디션`, 'background: linear-gradient(to right, #f00 50%, #070 0) left/8px; color: #fff; font-size: 20px; padding: 10px')
+    style1.hat.push('h8');
+  }
+
   const getRandomNum = (mn, mx) =>  Math.floor(Math.random() * (mx - mn + 1)) + mn;
 
   const gameStart = () => {
@@ -77,7 +87,7 @@ function GameView() {
       }
       newStyleCode += rtnVal;
     })
-    
+
     return newStyleCode;
   }
 
@@ -121,9 +131,10 @@ function GameView() {
     let desc = '사람 좀 찾아줘...';
     if(stageNum > 1){
       desc =`#${stageNum - 1}탄까지클리어`;
-      const pr = prompt('내가 누군지 알려주세요.(최대 8글자)');
+      const pr = prompt(' 내가 누군지 알려주세요.(최대 8글자)');
       if(pr !== '' && pr.replaceAll(' ', '') !== '') desc += ` #${pr.slice(0, 8)}`;
     }
+    if(isChristMasEdition()) desc += ' #크리스마스에디션';
 
     shareBtnRef.current.focus();
     
@@ -203,7 +214,7 @@ function GameView() {
       <div className="top-inf">
         <div className="target-person">
           {mrKim && mrKim.style ? (
-            <Person styleCode={mrKim.style} />
+            <Person styleCode={mrKim.style} refStyle={style1} />
           ) : (
             <p>...</p>
           )}
@@ -215,7 +226,7 @@ function GameView() {
       </div>
       <div className="people">
         {peopleArr.map((p, idx) => (
-          <Person key={p.idx} gameState={gameState} styleCode={p.style} isTarget={mrKim.idx === idx} onClickHandler={() => pickPerson(p.idx)} />
+          <Person key={p.idx} gameState={gameState} styleCode={p.style} isTarget={mrKim.idx === idx} onClickHandler={() => pickPerson(p.idx)} refStyle={style1} />
         ))}
       </div>
     </div>
