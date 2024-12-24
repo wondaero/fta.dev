@@ -14,12 +14,15 @@ function App() {
     _setViewType('gameView');
   }
 
-
+  const isChristMasEdition = () => {
+    const now = new Date();
+    return (now.getMonth() + 1) === 12 && (now.getDate() === 24 || now.getDate() === 25);
+  }
 
   return (
     <>
       <div className="wrapper">
-        <header>
+        <header className={isChristMasEdition() ? 'christmas' : ''}>
           <h1>Find Them All</h1>
           <strong>with React</strong>
         </header>
